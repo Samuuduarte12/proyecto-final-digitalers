@@ -1,14 +1,11 @@
 "use client"
 
-import { Sparkles } from "lucide-react"
 import { useEffect, useState } from "react";
-import FiltroCategoria from "../components/FiltroCategoria";
 import ProductoCard from "../components/ProductoCard";
 import Loading from "../components/loading/Loading";
-import NavBar from "../components/NavBar";
 import { Link } from "react-router-dom";
 
-export default function Home() {    
+export default function Home() {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -35,9 +32,9 @@ export default function Home() {
 
     const productosDestacados = productos
         .sort((a, b) => b.rating.rate - a.rating.rate)
-        .slice(0, 3)    
+        .slice(0, 3)
 
-        
+
     if (error) {
         return <div><h1>Error al traer los productos</h1></div>
     }
@@ -45,13 +42,11 @@ export default function Home() {
     return (
         <div className="min-h-screen">
             {loading ?
-                <div className="container h-full mx-auto flex items-center justify-center px-4 py-32 space-y-12">
-                    <Loading />
-                </div>
+                <Loading />
                 :
-                <main className="container mx-auto px-4 py-28 space-y-12">                    
+                <main className="container mx-auto px-4 py-20 md:py-28 space-y-12">
                     <section className="text-center space-y-6">
-                        <h1 className="text-5xl md:text-6xl font-bold text-balance">
+                        <h1 className="text-4xl md:text-6xl font-bold text-balance">
                             <span className="bg-linear-to-r from-[#00afb3] via-[#e65fde] to-[#00afb3] bg-clip-text text-transparent">
                                 Todo lo que buscás
                             </span>
@@ -59,17 +54,17 @@ export default function Home() {
                             <span className="text-[#f3faff]">en un solo lugar</span>
                         </h1>
 
-                        <p className="text-lg text-[#85919a] max-w-2xl mx-auto text-pretty">
+                        <p className=" md:text-lg text-[#85919a] max-w-2xl mx-auto text-pretty">
                             Ropa, joyas, tecnología y artículos para todos los gustos. Comprá fácil, rápido y seguro.
                         </p>
                     </section>
 
                     <section className="space-y-8">
                         <div className="flex flex-col items-center gap-6">
-                            <h2 className="text-2xl font-semibold text-[#f3faff]">Productos Destacados</h2>
+                            <h2 className="text-xl md:text-2xl font-semibold text-[#f3faff]">Productos Destacados</h2>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-5 md:px-0">
                             {productosDestacados.map((product) => (
                                 <ProductoCard key={product.id} product={product} />
                             ))}

@@ -36,15 +36,13 @@ const Productos = () => {
     if (error) {
         return <div><h1>Error al traer los productos</h1></div>
     }
-    
+
     return (
         <div>
             {loading ?
-                <div className="container h-full mx-auto flex items-center justify-center px-4 py-32 space-y-12">
-                    <Loading />
-                </div>
+                <Loading />
             :
-                <main className='container mx-auto px-4 py-28 space-y-12'>
+                <main className='container mx-auto px-4 py-20 md:py-28 space-y-12'>
                     <div className="flex flex-col items-center gap-6">
                         <h2 className="text-2xl font-semibold text-[#f3faff]"> Categorias</h2>
                         <FiltroCategoria
@@ -54,7 +52,7 @@ const Productos = () => {
                     </div>
                     <section className="space-y-8">
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 px-5 md:px-0">
                             {filtrarProductos.map((product) => (
                                 <ProductoCard key={product.id} product={product} />
                             ))}

@@ -4,10 +4,21 @@ import { Link, useNavigate } from "react-router-dom"
 
 export default function LoginPage() {
     const navigate = useNavigate()
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
+    const [formData, setFormData] = useState({
+        username: "",
+        password: ""
+    })
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState("")
+
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+             [name]: value
+        }))
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -19,8 +30,8 @@ export default function LoginPage() {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    username: username,
-                    password: password,
+                    username: formData.username,
+                    password: formData.password,
                 }),
             })
 
@@ -43,11 +54,11 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="min-h-screen flex items-end pb-10 justify-center p-4 relative overflow-hidden">
+        <div className="min-h-screen flex items-center md:items-end pb-10 justify-center p-4 relative overflow-hidden">
             <div className="absolute inset-0 bg-linear-to-br from-[#00afb3]/20 via-[#020511] to-[#e65fde]/20" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
 
-            <div className="w-full max-w-md relative z-10">                
+            <div className="w-full max-w-md relative z-10">
                 <div className="backdrop-blur-xl bg-[#0a121f]/50 border border-[#202938]/50 rounded-3xl shadow-2xl shadow-[#00afb3]/20 p-8 space-y-8">
                     <div className="flex flex-col items-center gap-4">
                         <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-[#00afb3] to-[#e65fde] flex items-center justify-center shadow-lg shadow-[#00afb3]/30">
@@ -71,9 +82,10 @@ export default function LoginPage() {
                                 <input
                                     id="username"
                                     type="text"
+                                    name="username"
                                     placeholder="mor_2314"
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
+                                    value={formData.username}
+                                    onChange={handleChange}
                                     required
                                     className="pl-10 w-full p-1 h-9 bg-[#020511]/50 backdrop-blur-sm border-[#202938]/50 focus:border-[#00afb3] transition-colors rounded-md border px-3 py-1 text-base shadow-xs outline-none"
                                 />
@@ -89,9 +101,10 @@ export default function LoginPage() {
                                 <input
                                     id="password"
                                     type="password"
+                                    name="password"
                                     placeholder="••••••••"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    value={formData.password}
+                                    onChange={handleChange}
                                     required
                                     className="pl-10 w-full p-1 h-9 bg-[#020511]/50 backdrop-blur-sm border-[#202938]/50 focus:border-[#00afb3] transition-colors rounded-md border px-3 py-1 text-base shadow-xs outline-none"
                                 />

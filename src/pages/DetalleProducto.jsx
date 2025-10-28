@@ -27,9 +27,7 @@ function DetalleProducto() {
     return (
         <div className="min-h-screen">
             {loading ?
-                <div className="container h-full mx-auto flex items-center justify-center px-4 py-32 space-y-12">
-                    <Loading />
-                </div>
+                <Loading />
                 :
                 <main className="container mx-auto px-4 py-24 space-y-12">
                     <div className="container">
@@ -44,7 +42,7 @@ function DetalleProducto() {
 
                     <div className="grid lg:grid-cols-2">
                         <div className="space-y-4">
-                            <div className="relative aspect-square h-[500px] rounded-3xl overflow-hidden bg-white backdrop-blur-sm border border-[#202938]/50 shadow-2xl shadow-[#00afb3]/10">
+                            <div className="relative aspect-square md:h-[500px] lg:h-[400px] rounded-3xl overflow-hidden bg-white backdrop-blur-sm border border-[#202938]/50 shadow-2xl shadow-[#00afb3]/10">
                                 <img
                                     src={producto.image}
                                     alt={producto.title}
@@ -55,7 +53,7 @@ function DetalleProducto() {
 
                         <div className="space-y-6">
                             <div>
-                                <span className="inline-block px-3 py-1 rounded-full bg-[#00afb3]/10 text-[#00afb3] text-sm font-medium mb-4">
+                                <span className="inline-block px-3 py-5 md:py-3 rounded-full bg-[#00afb3]/10 text-[#00afb3] text-sm font-medium mb-4">
                                     {producto.category}
                                 </span>
                                 <h1 className="text-4xl lg:text-3xl font-bold text-[#f3faff] mb-4 text-balance">{producto.title}</h1>
