@@ -1,11 +1,12 @@
 @import "tailwindcss";
+
 :root {
   --background: #020511;
   --foreground: #f3faff;
   --card: #0a121f;
   --card-foreground: oklch(0.98 0.01 240);
   --popover: oklch(0.18 0.03 260);
-  --popover-foreground: oklch(0.98 0.01 240);
+  --popover-foreground: #f3faff;
   --primary: #00afb3;
   --primary-foreground: oklch(1 0 0);
   --secondary: #e65fde;
@@ -33,4 +34,16 @@
   --sidebar-accent-foreground: oklch(0.98 0.01 240);
   --sidebar-border: oklch(0.28 0.03 260);
   --sidebar-ring: oklch(0.65 0.19 195);
+}
+
+
+/* Cambia el color del fondo del toast*/
+.Toastify__toast {
+  background-color: #0a121f !important;
+  color: white !important;
+}
+
+/* Cambia el color de la barrita del toast*/
+.Toastify__toast .Toastify__progress-bar {
+  background: linear-gradient(90deg, #00afb3, #e65fde) !important;
 }

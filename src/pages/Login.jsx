@@ -1,6 +1,14 @@
 import { useState } from "react"
 import { ShoppingBag, Lock, Mail, ArrowLeft } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
+import { useGlobal } from "../context/GlobalContext"
+
+
+/* 
+    USUARIO PARA EL LOGIN
+    usuario: johnd
+    constraseña: m38rmF$ 
+*/
 
 export default function LoginPage() {
     const navigate = useNavigate()
@@ -9,6 +17,7 @@ export default function LoginPage() {
         password: ""
     })
     const [isLoading, setIsLoading] = useState(false)
+    const {setToken } = useGlobal()
     const [error, setError] = useState("")
 
 
@@ -16,7 +25,7 @@ export default function LoginPage() {
         const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,
-             [name]: value
+            [name]: value
         }))
     }
 
@@ -40,8 +49,9 @@ export default function LoginPage() {
             const data = await response.json()
 
             if (data?.token) {
-                localStorage.setItem("token", data.token)
-                navigate("/dashboard")
+                localStorage.setItem("token", data.token);
+                setToken(data.token);
+                navigate("/")
             } else {
                 setError("Credenciales inválidas")
             }
