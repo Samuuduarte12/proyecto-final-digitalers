@@ -1,5 +1,3 @@
-import React from 'react'
-
 function Page404() {
   return (
     <div className='min-h-screen container text-9xl font-bold text-center mx-auto px-4 py-28 space-y-12'>

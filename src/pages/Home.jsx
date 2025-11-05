@@ -1,5 +1,3 @@
-"use client"
-
 import { useGlobal } from "../context/GlobalContext";
 import Loading from "../components/loading/Loading";
 import Hero from "../components/Hero";
@@ -20,7 +18,6 @@ export default function Home() {
                 <main className="py-17" >
                     <Hero />
                     <div className="container mx-auto px-4 space-y-12">
-
                         <section className="space-y-8">
                             <div className="flex flex-col items-center py-20 gap-6" style={{ fontFamily: "'Stack Sans Notch', sans-serif" }}>
                                 <h2 className="text-2xl md:text-4xl font-bold text-[#f3faff]">Productos Destacados</h2>

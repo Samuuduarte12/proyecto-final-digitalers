@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useGlobal } from '../context/GlobalContext';
 import { Link } from 'react-router-dom';
 import Contador from '../components/contador';
 import { ShoppingCart } from 'lucide-react';
+import Comprobante from '../components/Comprobante';
 
 function Carrito() {
     const { carrito, setCarrito, calcularTotalPorProducto, calcularTotalCarrito } = useGlobal()
@@ -14,6 +15,12 @@ function Carrito() {
         setCarrito(newCarrito);
     }
 
+    const total = calcularTotalCarrito()
+
+    const cerrarComprobante = () => {
+        setCarrito([])
+        setModalOpen(false)
+    }
     return (
         carrito.length > 0 ?
             <div className='md:min-h-screen md:container px-4 py-20'>
@@ -38,7 +45,7 @@ function Carrito() {
                             </button>
                         </div>
                     </div>
-                    
+
                     <div className='w-full bg-[#0a121f] rounded-xl md:w-3/4 md:mr-[34%] mb-80 md:mb-10'>
                         <div className='flex flex-col items-center justify-center p-1 md:p-1 gap-3'>
                             <div className='w-full md:w-5/6 py-3 rounded-xl shadow-xl'>
@@ -82,13 +89,13 @@ function Carrito() {
                                                 </button>
                                             </div>
                                         </div>
-                                        {/* {modalOpen && <
-                                            FormBuy
-                                            calcularTotalCarrito={calcularTotalCarrito}
-                                            setModalOpen={setModalOpen}
-                                            calcularTotalPorProducto={calcularTotalPorProducto}
-                                        />
-                                        } */}
+                                        {modalOpen &&
+                                            <div className="fixed inset-0 z-50 bg-black/10 backdrop-blur-xs flex justify-center items-center">
+                                                <div className="bg-[#0a121f] p-6 rounded-xl w-[90%] md:w-[550px] shadow-md border border-[#202938]">
+                                                    <Comprobante cerrarComprobante={cerrarComprobante} total={total} />
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
                                 ))}
                             </div>

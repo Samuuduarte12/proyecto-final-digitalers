@@ -1,6 +1,6 @@
-import { LogOut, ShoppingBag, ShoppingCart, User } from 'lucide-react'
-import { Link } from 'react-router-dom'
 import { useGlobal } from '../context/GlobalContext'
+import { Link } from 'react-router-dom'
+import { LogOut, ShoppingBag, ShoppingCart, User } from 'lucide-react'
 
 const NavBar = () => {
     const { estasAutenticado, carrito, setToken } = useGlobal()
@@ -26,9 +26,7 @@ const NavBar = () => {
                 <ul className='flex justify-between items-center gap-1 md:gap-16'>
                     <Link to="/" className='hover:text-[#00afb3]'>Inicio</Link>
                     <Link to="/productos" className='hover:text-[#00afb3]'>Productos</Link>
-                </ul>
-                <div className='flex gap-5'>
-                </div>
+                </ul>                
             </nav>
 
             <div className='w-1/4 md:p-1 md:py-2 flex justify-end text-xl'>
@@ -45,11 +43,10 @@ const NavBar = () => {
                         </button>
                     </div>
                     :
-                    <Link to="/login" className='gap-2 flex items-center hover:bg-[#e65fde] px-2 py-1 rounded-md'>
+                    <Link to="/login" className='gap-2 flex items-center hover:bg-[#e65fde] px-2 py-1 rounded-md text-sm'>
                         <User className="md:w-5 md:h-5" />
                         <span className="hidden sm:inline">Iniciar Sesión</span>
                     </Link>
-
                 }
             </div>
         </header>

@@ -23,7 +23,7 @@ function App() {
     location.pathname.startsWith(ruta)
   );
 
-  useEffect(() => {
+  useEffect(() => {    
     const storeToken = localStorage.getItem('token');
     if (storeToken) setToken(storeToken);
 
@@ -35,7 +35,6 @@ function App() {
         }
         const datos = await response.json();
         setProductos(datos);
-
       } catch (error) {
         setError(error)
       } finally {
@@ -48,7 +47,12 @@ function App() {
 
   return (
     <div className='bg-[#020511] text-[#f3faff]'>
-      <ToastContainer position="bottom-left" theme="colored" pauseOnFocusLoss pauseOnHover={false} />
+      <ToastContainer 
+        position="bottom-left" 
+        theme="colored" 
+        pauseOnFocusLoss 
+        pauseOnHover={false} 
+      />
       {!rutasOcultarNav && <NavBar />}
 
       <Routes>

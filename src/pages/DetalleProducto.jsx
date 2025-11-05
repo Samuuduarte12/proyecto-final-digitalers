@@ -7,10 +7,10 @@ import Contador from '../components/contador';
 import { toast } from 'react-toastify';
 
 function DetalleProducto() {
-    const [producto, setProducto] = useState({});
-    const [error, setError] = useState(null)
-    const [loading, setLoading] = useState(true);
     const { agregarAlCarrito, estasAutenticado } = useGlobal();
+    const [producto, setProducto] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null)
     const [contador, setContador] = useState(1);
 
     const { id } = useParams()

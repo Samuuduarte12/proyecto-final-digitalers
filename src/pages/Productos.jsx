@@ -70,7 +70,6 @@ const Productos = () => {
                                 <ProductoCard key={product.id} product={product} />
                             ))}
                         </div>
-
                     </section>
                 </main>
             }

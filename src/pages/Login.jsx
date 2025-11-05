@@ -1,8 +1,7 @@
 import { useState } from "react"
-import { ShoppingBag, Lock, Mail, ArrowLeft } from "lucide-react"
+import { ShoppingBag, Lock, Mail } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
 import { useGlobal } from "../context/GlobalContext"
-
 
 /* 
     USUARIO PARA EL LOGIN
@@ -11,28 +10,23 @@ import { useGlobal } from "../context/GlobalContext"
 */
 
 export default function LoginPage() {
-    const navigate = useNavigate()
+    const {setToken } = useGlobal()
     const [formData, setFormData] = useState({
         username: "",
         password: ""
     })
     const [isLoading, setIsLoading] = useState(false)
-    const {setToken } = useGlobal()
-    const [error, setError] = useState("")
-
+    const [error, setError] = useState(null)
+    const navigate = useNavigate()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }))
+        setFormData((prev) => ({...prev,[name]:value}))
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setIsLoading(true)
-        setError("")
+        setIsLoading(true)        
 
         try {
             const response = await fetch("https://fakestoreapi.com/auth/login", {
@@ -45,7 +39,6 @@ export default function LoginPage() {
             })
 
             if (!response.ok) throw new Error("Error al iniciar sesión")
-
             const data = await response.json()
 
             if (data?.token) {
